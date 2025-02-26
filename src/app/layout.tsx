@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbutton from "./components/Navbutton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,10 +24,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
+    <html lang="en" >
+      <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+<nav>
+  <div className="flex items-center justify-between p-6 bg-background border-b-gray-300 border-b-[0.2px] shadow-sm  ">
+    <div className="flex justify-between items-center flex-[.5]">
+<div className="font-inter font-semibold text-base text-primary md:text-3xl" >
+  <button>
+    ReactQwen
+  </button>
+</div>
+<div className="font-inter font-medium text-sm text-primary md:text-2xl" >
+  <button>
+    ReactQwen
+  </button>
+</div>
+<div className="font-inter font-medium text-sm text-primary md:text-2xl" >
+  <button>
+    ReactQwen
+  </button>
+</div>
+<div className="font-inter font-medium text-sm text-primary md:text-2xl" >
+  <button>
+    ReactQwen
+  </button>
+</div>
+<div className="font-inter font-medium text-sm text-primary md:text-2xl" >
+  <button>
+    ReactQwen
+  </button>
+</div>
+</div>
+  </div>
+</nav>
         {children}
       </body>
     </html>
