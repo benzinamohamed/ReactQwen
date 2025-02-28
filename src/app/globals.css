@@ -2,4 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {}
+
+@layer base {
+  * {
+    border: var(--border-border);
+    outline: var(--outline-ring) / 50;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+
+@layer components {
+  .custom-scrollbar {
+    @apply overflow-y-scroll; /* Apply Tailwind utilities */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Scrollbar width (unchanged) */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #FFFFFF; /* Track color (background) */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #c2c2c2; /* Thumb color (accent) */
+    border-radius: 4px; /* Round thumb (unchanged) */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #1A1A1A; /* Hover thumb color (secondary) */
+  }
+
+  /* Firefox scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin; /* Thin scrollbar (unchanged) */
+    scrollbar-color: #c0c0c0 #FFFFFF; /* Thumb and track color */
+  }
+}
 
