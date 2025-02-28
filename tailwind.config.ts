@@ -15,6 +15,7 @@ export default {
 			accent : "#666666", 
 			background: "#FFFFFF", 
 			boxes : "#242424",
+			"accent-foreground": "#FFFFFF",
 		  },
   		borderRadius: {
   			lg: 'var(--radius)',
