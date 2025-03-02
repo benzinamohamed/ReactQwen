@@ -9,6 +9,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
   import { ChevronDown, ChevronLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 
 function Navbar() : JSX.Element {
@@ -21,7 +22,7 @@ function Navbar() : JSX.Element {
 
   return (
     <nav>
-  <div className=" md:flex items-center justify-between p-4 bg-background border-b-gray-300 border-b-[0.2px] shadow-sm shadow-gray-200 ">
+  <div className=" md:flex items-center justify-between p-4 bg-background border-b-gray-300 border-b-[0.2px] shadow-sm shadow-boxes ">
    
 <div className='hidden md:flex justify-between items-center flex-[.5] ml-6'>
 <div className=" font-inter font-semibold  text-primary text-xl" >
@@ -36,7 +37,7 @@ function Navbar() : JSX.Element {
   </button>
 </div>
 <div className="font-inter font-medium text-sm text-primary md:text-lg mx-8" >
-  <button>
+  <button >
     Components
   </button>
 </div>
