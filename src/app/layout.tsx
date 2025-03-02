@@ -23,13 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="custom-scrollbar" >
-      <body suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-      >
-      <Navbar></Navbar>
-        {children}
-      </body>
-    </html>
+      <html lang="en" className="h-full custom-scrollbar bg-background">
+        <body suppressHydrationWarning
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-full flex flex-col`}
+        >
+          <Navbar />
+          <div className="flex-1 min-h-0 overflow-hidden">
+            {children}
+          </div>
+        </body>
+      </html>
   );
 }
