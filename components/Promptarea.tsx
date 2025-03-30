@@ -2,16 +2,35 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import { CommandLineIcon, SparklesIcon, CodeBracketIcon, BeakerIcon } from '@heroicons/react/24/outline';
+import { insertConversation } from '@/utiles/supabase';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { useRouter } from 'next/navigation';
 
 export const Promptarea = () => {
-    const [prompt, setPrompt] = useState('');
-      
+  const userData = useSelector((state: RootState) => state.UserLogin)
+  const [prompt, setPrompt] = useState('');
+  const router = useRouter();
       const examplePrompts = [
         'Create a responsive navbar with animated hamburger menu',
         'Generate a dashboard layout with dark mode toggle',
         'Build a modal with gesture-controlled animations',
         'Make a card component with hover effects and gradients'
       ];
+
+   const handleGenerate = async()=>{
+if (userData.id){
+  const {data ,error} = await insertConversation(userData.id ,prompt);
+  const id = data && data[0]?.id;
+  console.log("data", id);
+  console.log("err" , error)
+  router.push(`/code-execution/${userData.id}/${id}`);
+}else{
+  router.push('/?show=true');
+} 
+
+    
+   }   
   return (
     <div className="container mx-auto px-6 py-24">
     <motion.div 
@@ -45,8 +64,8 @@ export const Promptarea = () => {
   />
   
   <div className="flex justify-end px-6 pb-6">
-    <button 
-      className={`bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2 
+    <button onClick={handleGenerate}
+      className={`cursor-pointer hover:scale-105 bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2 
       transform ${prompt ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}
     >
       <SparklesIcon className="w-5 h-5" />
