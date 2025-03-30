@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface UserState {
-    id : number | undefined,
+    id : string 
     email: string,
     name: string,
     picture: string,
   }
   const initialState: UserState = {
-    id : undefined,
+    id : '',
     email: '',
     name:   '',
     picture:    '',
@@ -26,7 +26,7 @@ export interface UserState {
         state.picture = picture;
       },
       logout: (state : UserState) => {
-        state.id = undefined;
+        state.id = '';
         state.email = '';
         state.name =   '';
         state.picture =    '';
