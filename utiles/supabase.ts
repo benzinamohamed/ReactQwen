@@ -22,7 +22,7 @@ export const insertUser = async(userId : string , email : string , name : string
     return { data, error };
 }
 export const insertConversation = async(userId : string , conversationName : string) => {
-  const { data, error } = await supabase.from("conversations").insert({ user_id: userId , name : conversationName });
+  const { data, error } = await supabase.from("conversations").insert({ user_id: userId , name : conversationName }).select("id");
   return { data, error };
 }
 export const getConversations = async(userId : string) => {
