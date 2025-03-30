@@ -4,14 +4,13 @@ import { motion } from 'framer-motion';
 import { CommandLineIcon } from '@heroicons/react/24/outline';
 import { getCurrentUser } from '@/utiles/supabase';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '@/redux/slices';
+import { login, UserState } from '@/redux/slices';
 import { RootState } from '@/redux/store';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function CallbackPage() {
 const dispatch = useDispatch()
-const userData =  useSelector((state: RootState) => state.UserLogin); 
 const  router = useRouter();
 
 const fetchUser = async() => {
@@ -24,11 +23,10 @@ const fetchUser = async() => {
   }
   if(data.session){
     console.log("data",data);
-    const {sub , email , name ,avatar_url } = data.session.user.user_metadata ;
-    dispatch(login({id: sub , email , name , picture: avatar_url}));
-    router.push("/code-execution/"+sub);    
-  }else {
-    router.push("/");
+    const id = data.session.user.id;
+    const {email , name , avatar_url} =data.session.user.user_metadata ;
+    dispatch(login({id: id , email , name , picture: avatar_url}));
+    router.push("/");    
   }
   }
 
