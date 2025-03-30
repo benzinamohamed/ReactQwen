@@ -2,6 +2,7 @@
 import React from 'react'
 import { CommandLineIcon} from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import GetStartedOptionsButton from './GetStartedOptionsButton';
 
 export const HomeNavbar = () => {
   return (
@@ -12,15 +13,10 @@ export const HomeNavbar = () => {
           <CommandLineIcon className="w-5 h-5 text-black" />
         </div>
         <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-          ReactForge
+          ReactQwen
         </span>
       </div>
-      <div className="flex w-screen justify-between items-center md:w-auto md:space-x-6">
-        <Link href="https://ko-fi.com/hamodcode"target='_blank'  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-60 text-black px-6 py-2.5 rounded-lg transition-all" >Donate ❤️ </Link>
-        <Link  href='/?show=true' className="bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-60 text-black px-6 py-2.5 rounded-lg transition-all cursor-pointer">
-          Get Started
-        </Link>
-      </div>
+     <GetStartedOptionsButton/>
     </div>
   </nav>
   )

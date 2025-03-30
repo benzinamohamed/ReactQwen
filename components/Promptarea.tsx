@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import { CommandLineIcon, SparklesIcon, CodeBracketIcon, BeakerIcon } from '@heroicons/react/24/outline';
@@ -36,21 +35,25 @@ export const Promptarea = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur-xl opacity-20 animate-pulse" />
       <div className="relative bg-black border-2 border-emerald-500/30 rounded-2xl shadow-2xl transition-all hover:border-emerald-400/50">
-        <div className="flex flex-col p-1">
-          <textarea
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Describe your component..."
-            className="w-full min-h-[200px] bg-transparent text-white placeholder-slate-500 border-none focus:ring-0 text-xl py-6 px-8 resize-none"
-            style={{ lineHeight: 1.6 }}
-          />
-          <div className="flex justify-end px-6 pb-6">
-            <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2">
-              <SparklesIcon className="w-5 h-5" />
-              <span>Generate Component</span>
-            </button>
-          </div>
-        </div>
+      <div className="flex flex-col p-1">
+  <textarea
+    value={prompt}
+    onChange={(e) => setPrompt(e.target.value)}
+    placeholder="Describe your component..."
+    className="select-none focus:outline-none w-full min-h-[200px] bg-transparent text-white placeholder-slate-500 border-none focus:ring-0 text-xl py-6 px-8 resize-none"
+    style={{ lineHeight: 1.6 }}
+  />
+  
+  <div className="flex justify-end px-6 pb-6">
+    <button 
+      className={`bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2 
+      transform ${prompt ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}
+    >
+      <SparklesIcon className="w-5 h-5" />
+      <span>Generate Component</span>
+    </button>
+  </div>
+</div>
       </div>
     </motion.div>
 

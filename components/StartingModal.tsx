@@ -1,16 +1,41 @@
 "use client";
-
-
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/navigation";
 import { motion , AnimatePresence } from 'framer-motion';
 import { CommandLineIcon, SparklesIcon, CodeBracketIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useDispatch , useSelector } from 'react-redux';
+import { signWithProvider , getCurrentUser} from '@/utiles/supabase';
+
+
+
 interface StartingModalProps {
   isVisible: string | undefined;   
 }
 
+
 const StartingModal = ({isVisible} : StartingModalProps) => {
 const router = useRouter();
+
+
+const handleGoogleAuth = async() => {
+
+  try {
+    await signWithProvider("google");
+  } catch (error) {
+    console.error("Error during authentication:", error);
+  }
+  }
+
+  const handleGitHubAuth = async() => {
+
+    try {
+      await signWithProvider("github");
+    } catch (error) {
+      console.error("Error during authentication:", error);
+    }
+    }
+
+
   return (
     <AnimatePresence>
     {isVisible && (
@@ -37,17 +62,15 @@ const router = useRouter();
                 Access ReactForge
               </h2>
             </div>
-  
-            {/* Auth Providers */}
             <div className="space-y-4">
-              <button className="cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all">
-                <img src="/google.svg" className="w-5 h-5 invert" />
+            <button onClick={handleGoogleAuth} className="cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all">
+              <img src="/google.svg" className="w-5 h-5 invert" />
                 <span className="text-slate-300 group-hover:text-emerald-400">
                   Continue with Google
                 </span>
               </button>
   
-                <button className="cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all transform">
+                <button onClick={handleGitHubAuth} className="cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all transform">
                 <img src="/github.svg" className="w-5 h-5 invert" />
                 <span className="text-slate-300 group-hover:text-emerald-400">
                   Continue with GitHub
