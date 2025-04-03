@@ -111,6 +111,15 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
 
 @layer base {
   * {
@@ -120,3 +129,30 @@
     @apply bg-background text-foreground;
   }
 }
+/* General Scrollbar (Green & Black) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; /* Black track */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(21, 53, 32, 0.8); /* Green (Tailwind emerald-500) */
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(10, 56, 27); /* Darker Green */
+}
+
+/* Firefox Support */
+* {
+  scrollbar-color: rgba(48, 104, 69, 0.8) black ;
+  scrollbar-width: thin;
+}
+

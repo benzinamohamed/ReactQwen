@@ -6,16 +6,13 @@ import { CommandLineIcon, CpuChipIcon } from '@heroicons/react/24/outline';
 export default function CodeLoading() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-slate-900">
-      {/* Animated Code Editor Skeleton */}
       <div className="container mx-auto px-6 py-24">
         <div className="flex flex-col lg:flex-row gap-8 h-[calc(100vh-180px)]">
-          {/* Chat Section Skeleton */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex-1 bg-slate-900/50 backdrop-blur-xl rounded-xl border border-emerald-500/20 p-6 flex flex-col"
           >
-            {/* Simulated Chat History */}
             <div className="flex-1 space-y-6 mb-6">
               {[...Array(3)].map((_, i) => (
                 <motion.div
@@ -34,23 +31,18 @@ export default function CodeLoading() {
               ))}
             </div>
 
-            {/* Input Field Skeleton */}
             <div className="relative bg-slate-800/50 border border-emerald-500/20 rounded-xl p-4">
               <div className="h-6 bg-slate-700/50 rounded animate-pulse w-1/3" />
             </div>
           </motion.div>
 
-          {/* Code Editor Skeleton */}
           <div className="lg:w-1/2 bg-slate-900/50 backdrop-blur-xl rounded-xl border border-emerald-500/20 p-6">
-            {/* Simulated Code Editor */}
             <div className="bg-black rounded-xl border border-emerald-500/20 overflow-hidden">
-              {/* Editor Header */}
               <div className="p-4 border-b border-emerald-500/20 flex justify-between">
                 <div className="h-4 bg-emerald-500/20 rounded-full w-32 animate-pulse" />
                 <div className="h-6 w-6 bg-slate-700/50 rounded-lg animate-pulse" />
               </div>
 
-              {/* Code Lines Animation */}
               <div className="p-4 space-y-3">
                 {[...Array(12)].map((_, i) => (
                   <motion.div
@@ -71,7 +63,6 @@ export default function CodeLoading() {
               </div>
             </div>
 
-            {/* Processing Animation */}
             <div className="mt-6 flex items-center gap-4">
               <CpuChipIcon className="w-6 h-6 text-emerald-400 animate-pulse" />
               <div className="flex-1 bg-slate-800/50 rounded-full h-3 overflow-hidden">
@@ -85,8 +76,6 @@ export default function CodeLoading() {
             </div>
           </div>
         </div>
-
-        {/* Terminal Status Animation */}
         <div className="fixed bottom-6 left-6 bg-slate-900/80 backdrop-blur-sm p-4 rounded-xl border border-emerald-500/20">
           <div className="flex items-center gap-3">
             <CommandLineIcon className="w-5 h-5 text-emerald-400" />

@@ -3,20 +3,23 @@ import { Promptarea } from '../components/Promptarea';
 import Features from '../components/Features';
 import { HomeNavbar } from '../components/HomeNavbar';
 import StartingModal from '../components/StartingModal';
+import ChatListModal from '@/components/ChatListModal';
 
-interface Props {
+export interface Props {
   searchParams: Record<string, string> | null | undefined;
   }
-
-
-export default function Home({searchParams}: Props) {  
- const showModal = searchParams?.show;
+  
+  
+  export default async function Home({searchParams}: Props) {  
+    const showModal = await searchParams?.show;
+    const showChatModal = await searchParams?.showchatlist;
   return (
-    <div className="min-h-screen bg-black">
+    <div className=" min-h-screen bg-black">
      <HomeNavbar></HomeNavbar>
       <Promptarea></Promptarea>
       <Features></Features>
        <StartingModal isVisible={showModal} />
+       <ChatListModal isVisible={showChatModal} ></ChatListModal>
       <footer className="border-t border-emerald-900/50">
         <div className="container mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row justify-between items-center text-slate-400">
