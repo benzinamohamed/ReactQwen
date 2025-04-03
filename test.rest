@@ -1,1 +1,54 @@
-GET http://localhost:3000/api/v1
+POST http://localhost:3000/api/v1/chat
+Content-Type: application/json
+
+
+{
+  "messages": [
+    { "role": "user", "content": "hi" },
+    { "role": "user", "content": "i love you" },
+    { "role": "user", "content": "hi bro , say hi shortly " },
+    { "role": "assistant", "content": "Hi" },
+    { "role": "user", "content": "how are u" },
+    {
+      "role": "assistant",
+      "content": "I'm doing well, thanks for asking. Is there something I can help you with regarding your React and Tailwind CSS project? Perhaps you need assistance with a specific component, styling, or debugging? I'm here to provide you with React and Tailwind CSS code solutions. \n\nFor example, if you're looking to create a basic layout, you could start with something like this:\n\n```jsx\nimport React from 'react';\n\nfunction App() {\n  return (\n    <div className=\"max-w-md mx-auto p-4 mt-12 bg-white rounded-xl shadow-md\">\n      <h1 className=\"text-3xl font-bold mb-4\">Hello, World!</h1>\n      <p className=\"text-lg\">This is a sample paragraph.</p>\n    </div>\n  );\n}\n\nexport default App;\n```\n\nLet me know how I can assist you further."
+    },
+    { "role": "user", "content": "i hope you are doing well" },
+    {
+      "role": "assistant",
+      "content": "I'm doing well, thank you for asking. Is there something I can help you with, such as creating a new React component or styling a page with Tailwind CSS?"
+    },
+    { "role": "user", "content": "gg" },
+    {
+      "role": "user",
+      "content": "you are now in a testing mode \ncan u rembember the first message enters by the user in this chat ?\nif yes reply by that message , if this is the only message u know tell us"
+    },
+    {
+      "role": "assistant",
+      "content": "The first message entered by the user in this chat is: \n\n\"hi\""
+    },
+    {
+      "role": "user",
+      "content": "no the second message by the user not by the system"
+    },
+    {
+      "role": "assistant",
+      "content": "Since this conversation just started, there is no second message from the user. I'm ready to assist with any React or Tailwind CSS-related queries. Please go ahead and provide your question or request, and I'll respond with code or tool calls as needed."
+    },
+    { "role": "user", "content": "how many messages are in this chat " },
+    {
+      "role": "assistant",
+      "content": "However, based on our conversation so far, I see that the first user message was \"hi\". If you are referring to the message after \"hi\", it would be \"i love you\"."
+    },
+    { "role": "user", "content": "hi" },
+    {
+      "role": "assistant",
+      "content": "To get started with creating a React application..."
+    },
+     {
+      "role": "user",
+      "content": "how many messages are in this chat"
+    },
+    
+  ]
+}

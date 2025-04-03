@@ -25,9 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" >
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased custom-scrollbar`}
       >
-        <main  className="overflow-hidden"> 
+        <main  className="overflow-hidden  "> 
           <ReduxProvider>
          {children}
          </ReduxProvider>

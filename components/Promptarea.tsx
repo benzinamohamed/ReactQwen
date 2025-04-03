@@ -6,10 +6,12 @@ import { insertConversation } from '@/utiles/supabase';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useRouter } from 'next/navigation';
+import { flightRouterStateSchema } from 'next/dist/server/app-render/types';
 
 export const Promptarea = () => {
   const userData = useSelector((state: RootState) => state.UserLogin)
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState<string>('');
+  const [loading , setLoading] = useState<boolean>(false);
   const router = useRouter();
       const examplePrompts = [
         'Create a responsive navbar with animated hamburger menu',
@@ -20,11 +22,18 @@ export const Promptarea = () => {
 
    const handleGenerate = async()=>{
 if (userData.id){
-  const {data ,error} = await insertConversation(userData.id ,prompt);
-  const id = data && data[0]?.id;
-  console.log("data", id);
-  console.log("err" , error)
-  router.push(`/code-execution/${userData.id}/${id}`);
+  try {
+    setLoading(true);
+    const { data, error } = await insertConversation(userData.id, prompt);
+    const id = data && data[0]?.id;
+    console.log("data", id);
+    console.log("err", error);
+    router.push(`/code-execution/chat/${id}`);
+  } catch (err) {
+    console.error("An error occurred:", err);
+  } finally {
+    setLoading(false);
+  }
 }else{
   router.push('/?show=true');
 } 
@@ -64,7 +73,7 @@ if (userData.id){
   />
   
   <div className="flex justify-end px-6 pb-6">
-    <button onClick={handleGenerate}
+    <button onClick={handleGenerate} disabled={loading}
       className={`cursor-pointer hover:scale-105 bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2 
       transform ${prompt ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}
     >

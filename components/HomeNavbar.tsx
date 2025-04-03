@@ -13,7 +13,10 @@ export const HomeNavbar = () => {
           <CommandLineIcon className="w-5 h-5 text-black" />
         </div>
         <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-          ReactQwen
+          <Link href={"/"}> ReactQwen
+          </Link>
+  
+          
         </span>
       </div>
      <GetStartedOptionsButton/>

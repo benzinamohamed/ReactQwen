@@ -3,6 +3,7 @@
 import { RootState } from '@/redux/store';
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import {
@@ -21,13 +22,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { sginOut } from '@/utiles/supabase';
 import { logout } from '@/redux/slices';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const GetStartedOptionsButton = () => {
     const userData =  useSelector((state: RootState) => state.UserLogin); 
     const dispatch = useDispatch();
     const router = useRouter();
-
+    const pathname = usePathname()
     const handleLogout = async() => {  
       const {error} = await sginOut();
       dispatch(logout());
@@ -62,7 +63,8 @@ if(userData.id){
       className="relative"
     >
       <div className="select-none absolute inset-0 bg-emerald-500/20 blur-md rounded-full animate-pulse" />
-      <img
+      <Image
+      width={1000} height={1000} 
         src={userData.picture || '/default-avatar.png'}
         alt="User Avatar"
         className="select-none relative w-10 h-10 rounded-full border-2 border-emerald-500/30 hover:border-emerald-400/50 shadow-lg shadow-emerald-500/10 transition-all"
@@ -82,12 +84,12 @@ if(userData.id){
       
       
       <DropdownMenuGroup className="p-2 space-y-1">
-        <DropdownMenuItem className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
-          Profile
+     
+        <DropdownMenuItem onClick={()=>router.push(`${pathname}/?showchatlist=true`)} className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
+          Chats
         </DropdownMenuItem>
-        
       
-        <DropdownMenuItem className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
+        <DropdownMenuItem disabled className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
           Settings
         </DropdownMenuItem>
         
