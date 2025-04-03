@@ -27,6 +27,8 @@ const fetchUser = async() => {
     const {email , name , avatar_url} =data.session.user.user_metadata ;
     dispatch(login({id: id , email , name , picture: avatar_url}));
     router.push("/");    
+  }else {
+    router.push("/");
   }
   }
 

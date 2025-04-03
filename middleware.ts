@@ -5,7 +5,7 @@ import { use } from 'react';
 
 const PROTECTED_ROUTES = [
   '/code-execution',
-  '/code-execution/[id]',
+  '/code-execution/chat/[conversationId]',
 ];
 
 export async function middleware(req: NextRequest) {
@@ -13,12 +13,23 @@ export async function middleware(req: NextRequest) {
   const supabase = createMiddlewareClient({ req, res });
 
   const {data :{user }} = await supabase.auth.getUser();
-
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => req.nextUrl.pathname.startsWith(route));  
-  console.log("dvvsdvdsvdsdvsdvsdvs",user)
+  console.log(req.nextUrl.pathname)
+  //console.log(req.q)
   if(isProtectedRoute && !user) {
     console.log("User is not logged in, redirecting to home page");
     return NextResponse.redirect(new URL('/', req.nextUrl.origin)); 
+  }
+  if(isProtectedRoute && user){
+    const pathName = req.nextUrl.pathname.split("/")
+   const id = pathName? pathName[pathName.length -1] : null
+   const {data , error} = await supabase.from("conversations").select("*").eq("user_id",user.id).eq("id" , id);
+   console.log("dddddd",data)
+   if(data?.length === 0) 
+    {
+     return NextResponse.redirect(new URL("/404",req.url))
+      
+    } 
   }
 
 return res;
