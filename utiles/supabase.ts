@@ -36,7 +36,7 @@ export const getMessages = async(conversationId : string) => {
 }
 
 export const insertMessage = async(sender : string , content : string , conversation_id : string ) => {
-    const { data, error } = await supabase.from("messages").insert({ conversation_id: conversation_id , sender : sender ,content : content });
+    const { data, error } = await supabase.from("messages").insert({ conversation_id: conversation_id , sender : sender ,content : content }).select("*");
     return { data, error };
     }
 

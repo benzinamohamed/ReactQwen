@@ -7,12 +7,18 @@ export interface UserState {
     name: string,
     picture: string,
   }
+
+
   const initialState: UserState = {
     id : '',
     email: '',
     name:   '',
     picture:    '',
   }
+
+
+
+
   
   export const UserLoginSlice = createSlice({
     name: 'UserLogin',
@@ -33,7 +39,8 @@ export interface UserState {
       },
     },
   })
-  
+
+
 
   export const { login , logout } = UserLoginSlice.actions
   export default UserLoginSlice.reducer

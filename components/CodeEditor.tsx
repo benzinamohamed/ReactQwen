@@ -1,16 +1,25 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion';
 import { CodeBracketIcon, PlayIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import Editor from '@monaco-editor/react';
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 const CodeEditor = () => {
+    const AiCode =  useSelector((state: RootState) => state.code);
+    const [code , setCode] = useState(AiCode.code);
+
+
+    useEffect(()=>{
+    setCode(AiCode.code?.match(/```(?:jsx)?([\s\S]*?)```/)?.[1] || "")
+    },[AiCode.code])
+
   return (
     <motion.div 
         className="lg:w-[55%] bg-slate-900/50 backdrop-blur-xl rounded-xl border border-emerald-500/20 p-6 flex flex-col min-h-[500px]"
     >
-        {/* Toggle - Keep original implementation */}
         <div className="flex mb-6 bg-slate-800/50 rounded-lg p-1 gap-2">
             <button className="flex-1 flex items-center justify-center gap-2 py-2 rounded-md bg-emerald-500/10 text-emerald-400">
                 <CodeBracketIcon className="w-5 h-5" />
@@ -22,7 +31,6 @@ const CodeEditor = () => {
             </button>
         </div>
 
-        {/* Fixed Editor Container */}
         <div className="flex-1 bg-black rounded-xl border border-emerald-500/20 overflow-hidden flex flex-col">
             <div className="p-4 border-b border-emerald-500/20 flex items-center justify-between">
                 <span className="text-emerald-400 text-sm">component.jsx</span>
@@ -33,6 +41,7 @@ const CodeEditor = () => {
             
             <div className="flex-1 overflow-hidden">
                 <Editor
+                   value={code}
                     height="100%"
                     defaultLanguage="javascript"
                     theme="vs-dark"
@@ -51,7 +60,6 @@ const CodeEditor = () => {
             </div>
         </div>
 
-        {/* Execution controls (keep existing) */}
     </motion.div>
   )
 }
