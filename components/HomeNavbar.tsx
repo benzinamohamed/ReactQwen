@@ -6,8 +6,8 @@ import GetStartedOptionsButton from './GetStartedOptionsButton';
 
 export const HomeNavbar = () => {
   return (
-    <nav className="container   py-6 ">
-    <div className="flex items-center justify-between  w-screen px-16">
+    <nav className="container py-6  ">
+    <div className="flex items-center justify-between  w-screen md:px-16">
       <div className="md:flex md:items-center md:space-x-3 hidden">
         <div className="w-8 h-8 bg-gradient-to-tr from-green-400 to-emerald-500 rounded-md  ">
           <CommandLineIcon className="w-5 h-5 text-black" />

@@ -74,11 +74,11 @@ if (userData.id){
   
   <div className="flex justify-end px-6 pb-6">
     <button onClick={handleGenerate} disabled={loading}
-      className={`cursor-pointer hover:scale-105 bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2 
+      className={`active:scale-95 cursor-pointer hover:scale-105 bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-8 py-3.5 rounded-xl transition-all flex items-center space-x-2 
       transform ${prompt ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}
     >
       <SparklesIcon className="w-5 h-5" />
-      <span>Generate Component</span>
+      <span>{loading ? "procsessing..." :  "Generate Component"}</span>
     </button>
   </div>
 </div>
@@ -96,7 +96,7 @@ if (userData.id){
         <button
           key={index}
           onClick={() => setPrompt(prompt)}
-          className="text-left p-4 bg-slate-900 hover:bg-slate-800 border border-emerald-500/20 rounded-xl transition-all group"
+          className="active:scale-95 text-left p-4 bg-slate-900 hover:bg-slate-800 border border-emerald-500/20 rounded-xl transition-all group"
         >
           <p className="text-slate-300 group-hover:text-emerald-400">{prompt}</p>
         </button>

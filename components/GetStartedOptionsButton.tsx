@@ -2,7 +2,7 @@
 
 import { RootState } from '@/redux/store';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
@@ -23,6 +23,7 @@ import {
 import { sginOut } from '@/utiles/supabase';
 import { logout } from '@/redux/slices';
 import { usePathname, useRouter } from 'next/navigation';
+import { setCode } from '@/redux/codeSlice';
 
 const GetStartedOptionsButton = () => {
     const userData =  useSelector((state: RootState) => state.UserLogin); 
@@ -37,9 +38,13 @@ const GetStartedOptionsButton = () => {
         console.log("error",error); 
     }
 
+    useEffect(()=>{
+     pathname === "/"? dispatch(setCode({code : ""})) : null;   
+     
+    },[])
 if(userData.id){
   return (
-    <div className="flex items-center space-x-4 md:space-x-6">
+    <div className="flex items-center p-4  w-full justify-between space-x-4 md:space-x-6 md:w-fit md:p-0 ">
       <motion.div 
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -85,11 +90,11 @@ if(userData.id){
       
       <DropdownMenuGroup className="p-2 space-y-1">
      
-        <DropdownMenuItem onClick={()=>router.push(`${pathname}/?showchatlist=true`)} className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
+        <DropdownMenuItem onClick={()=>router.push(`${pathname}/?showchatlist=true`)} className="active:scale-95 focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400 ">
           Chats
         </DropdownMenuItem>
       
-        <DropdownMenuItem disabled className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
+        <DropdownMenuItem disabled className="active:scale-95 focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
           Settings
         </DropdownMenuItem>
         
@@ -98,14 +103,14 @@ if(userData.id){
 
       <DropdownMenuSeparator className="bg-emerald-500/10 mx-2 my-2" />
       <DropdownMenuGroup className="p-2 space-y-1">
-        <DropdownMenuItem className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300">
+        <DropdownMenuItem className="active:scale-95 focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300">
           GitHub
         </DropdownMenuItem>
-        <DropdownMenuItem className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300">
+        <DropdownMenuItem className="active:scale-95 focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300">
           X (Twitter)
         </DropdownMenuItem>
         <DropdownMenuItem 
-          className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 opacity-50" 
+          className=" focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 opacity-50" 
           disabled
         >
           API
@@ -114,10 +119,10 @@ if(userData.id){
 
       <DropdownMenuSeparator className="bg-emerald-500/10 mx-2 my-2" />
 
-      <DropdownMenuItem disabled className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
+      <DropdownMenuItem disabled className=" focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
         Help center
       </DropdownMenuItem>
-      <DropdownMenuItem onClick={handleLogout}  className="focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
+      <DropdownMenuItem onClick={handleLogout}  className="active:scale-95 focus:bg-slate-800/40 focus:text-emerald-300 rounded-lg px-3 py-2 text-sm text-slate-300 cursor-pointer transition-all border-l-2 border-transparent hover:border-emerald-400">
         Log out
       </DropdownMenuItem>
     </motion.div>
@@ -129,7 +134,7 @@ if(userData.id){
 }
 
   return (
-    <div className="flex w-screen justify-between items-center md:w-auto md:space-x-6">
+    <div className="flex items-center px-4 w-screen justify-between space-x-4 md:space-x-6 md:w-fit">
          <motion.div 
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
