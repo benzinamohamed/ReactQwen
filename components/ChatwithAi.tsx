@@ -24,19 +24,18 @@ export type message = {
       const pathname = usePathname();
       const urls = pathname.split("/")
       const conversationId = urls? urls[urls.length -1] : "";
-      console.log(messages)
         const handleGenerate = async()=>{
           if(prompt){
             
+            setPrompt("");
             await insertMessage("user" ,prompt ,conversationId );
             setmessages((prev) => [...prev, { sender: "user", content: prompt }]);
             setAiLoading(true);
-          const message =  await callAiMessages(messages);
-          console.log(message);
-          await insertMessage("assistant" , message.content , conversationId)
-          setmessages((prev) => [...prev, { sender: "assistant", content: message.content?.match(/^(?!.*```)([\s\S]+?)(?=\n```|\n|$)/g) || ""}])
+            const message =  await callAiMessages([...messages , { sender: "user", content: prompt }]);
+            dispatch(setCode({code : message.content ? message.content : "server busy please try again later"}));
+            await insertMessage("assistant" , message.content ? message.content : "server busy please try again later" , conversationId)
+            setmessages((prev) => [...prev, { sender: "assistant", content: message.content ? message.content : "server busy please try again later"}])
           setAiLoading(false);
-  
           }}
           const retreiveMessages = async()=>{
             try {
@@ -135,7 +134,7 @@ value={prompt}
     className="bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-black px-6 py-2 rounded-lg flex items-center gap-2 text-sm font-medium transition-all"
   >
     <SparklesIcon className="w-4 h-4" />
-    Generate
+    {aiLoading? "processing..." :  "Generate"}
   </motion.button>
 </div>
 </div>

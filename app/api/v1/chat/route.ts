@@ -1,16 +1,15 @@
-import { getCurrentUser } from "@/utiles/supabase";
 import Groq from "groq-sdk";
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { sysPrompt } from "./systemPrompt";
-import { StreamingTextResponse, streamText } from 'ai'
-
+import JSON5 from 'json5';
+ 
 type ResponseData = {
   message: string
 }
  
 
 type conversation = {
-  role : string;
+  role? : string;
+  sender?: string;
 content: string;
 }
 
@@ -23,26 +22,31 @@ export async function getGroqChatCompletion(chat :conversation[]) {
   chat.unshift(System);
   return groq.chat.completions.create({
     messages: chat,
-    model: "llama-3.3-70b-versatile",
+    model: "meta-llama/llama-4-scout-17b-16e-instruct",
   });
 }
 
   export async function POST(req: Request) {
     try {
-      const cleanData = JSON.parse(JSON.stringify(req));
-      const res = await cleanData.json();
-      const chatCompletion = await getGroqChatCompletion(res.messages);
-      console.log(res.messages);
+      
+      const res = await req.text();
+      const parsedData = JSON5.parse(res);
+   
+      const messages = parsedData.messages.map((item: conversation) => {
+        return {
+          role: item.sender ? item.sender : item.role,
+          content: item.content 
+        };
+      } );
+      const chatCompletion = await getGroqChatCompletion(messages);
+     // console.log(parsedData);
       return Response.json({
         role: "assistant",
         content: chatCompletion.choices[0]?.message?.content || ""
       });
     } catch (error) {
       console.error("Error processing chat completion:", error);
-      return Response.json({
-        role: "error",
-        content: "An error occurred while processing your request."
-      }, { status: 500 });
+      return Response.json({ error : "an error has occured" }, { status: 500 });
     }
     }
   
