@@ -41,7 +41,7 @@ const ChatListModal = ({isVisible} :ChatList ) => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="z-50 fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center"
+        className="z-50 fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center p-8 md:p-0 md:bg-black/90"
         onClick={router.back}
       >
         <div 
@@ -61,7 +61,7 @@ const ChatListModal = ({isVisible} :ChatList ) => {
                 animate={{ opacity: 1, x: 0 }}
                 className="p-4 bg-slate-800/50 rounded-lg border border-emerald-500/10 hover:border-emerald-400/30 transition-all cursor-pointer group"
               >
-                <div className="flex justify-between items-start">
+                <div className="active:scale-95 flex justify-between items-start">
                   <div className="space-y-2">
                     <h3 className="text-slate-100 font-medium">{convo.name}</h3>
                   </div>

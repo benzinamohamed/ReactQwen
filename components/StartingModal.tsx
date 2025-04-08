@@ -44,7 +44,7 @@ const handleGoogleAuth = async() => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center"
+        className=" fixed inset-0 bg-black/40  backdrop-blur-md flex items-center justify-center p-8 md:p-0 md:bg-black/90"
         onClick={router.back}
       >
         <div 
@@ -63,14 +63,14 @@ const handleGoogleAuth = async() => {
               </h2>
             </div>
             <div className="space-y-4">
-            <button onClick={handleGoogleAuth} className="cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all">
+            <button onClick={handleGoogleAuth} className="active:scale-95 cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all">
               <img src="/google.svg" className="w-5 h-5 invert" />
                 <span className="text-slate-300 group-hover:text-emerald-400">
                   Continue with Google
                 </span>
               </button>
   
-                <button onClick={handleGitHubAuth} className="cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all transform">
+                <button onClick={handleGitHubAuth} className=" active:scale-95 cursor-pointer w-full group flex items-center justify-center gap-3 p-3.5 bg-slate-800 hover:bg-slate-600 hover:scale-105 rounded-lg border border-emerald-500/20 transition-all transform">
                 <img src="/github.svg" className="w-5 h-5 invert" />
                 <span className="text-slate-300 group-hover:text-emerald-400">
                   Continue with GitHub
@@ -78,7 +78,6 @@ const handleGoogleAuth = async() => {
                 </button>
             </div>
   
-            {/* Legal */}
             <p className="text-center text-xs text-slate-400 leading-relaxed">
               By continuing, you agree to our {' '}
               <a className="text-emerald-400 hover:underline cursor-pointer">Terms</a> and {' '}

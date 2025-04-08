@@ -1,6 +1,7 @@
 import { message } from "@/components/ChatwithAi";
 
 export const callAiprompt = async(prompt :string)=> {
+  console.log("callAipropt called");
     const res = await fetch("http://localhost:3000/api/v1/chat",
         {
           method : "POST",
@@ -18,20 +19,26 @@ export const callAiprompt = async(prompt :string)=> {
 
 
 export const callAiMessages = async(messages : message[])=> {
-    const filtredMessages = messages.map((item)=>{
-        return {"role" : item.sender , "content" : item.content}
-      })
-        const res = await fetch("http://localhost:3000/api/v1/chat",
-            {
-              method : "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-              messages : filtredMessages
-              })
-             })
+  console.log("callAi message called");
+  console.log(messages)
+
+        try {
+            const res = await fetch("http://localhost:3000/api/v1/chat",
+          {
+            method : "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            messages : messages
+              ,
+            })
+           })
             return await res.json();
+        } catch (error) {
+            console.error("Error while calling AI messages:", error);
+            throw error;
+        }
           }
     
     

@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextRequest } from 'next/server';
-import { use } from 'react';
 
 const PROTECTED_ROUTES = [
   '/code-execution',
@@ -24,7 +23,6 @@ export async function middleware(req: NextRequest) {
     const pathName = req.nextUrl.pathname.split("/")
    const id = pathName? pathName[pathName.length -1] : null
    const {data , error} = await supabase.from("conversations").select("*").eq("user_id",user.id).eq("id" , id);
-   console.log("dddddd",data)
    if(data?.length === 0) 
     {
      return NextResponse.redirect(new URL("/404",req.url))

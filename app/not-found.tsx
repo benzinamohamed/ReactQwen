@@ -34,7 +34,6 @@ export default function NotFound() {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="border-t border-emerald-900/50 mt-24">
         <div className="container mx-auto px-6 py-8">
           <p className="text-center text-slate-400 text-sm">

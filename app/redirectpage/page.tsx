@@ -53,7 +53,6 @@ const fetchUser = async() => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="container mx-auto px-6 py-24">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +60,6 @@ const fetchUser = async() => {
           transition={{ duration: 0.8 }}
           className="max-w-2xl mx-auto text-center flex flex-col items-center"
         >
-          {/* Animated Loader */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
@@ -70,7 +68,6 @@ const fetchUser = async() => {
             <div className="absolute inset-0 border-t-4 border-emerald-400 rounded-full animate-spin" />
           </motion.div>
 
-          {/* Status Text */}
           <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-4">
             Securing Your Session
           </h1>
