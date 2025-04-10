@@ -1,7 +1,7 @@
 import { message } from "@/components/ChatwithAi";
 
 export const callAiprompt = async(prompt :string)=> {
-  console.log("callAipropt called");
+  
     const res = await fetch("https://react-qwen.vercel.app//api/v1/chat",
         {
           method : "POST",
@@ -19,8 +19,8 @@ export const callAiprompt = async(prompt :string)=> {
 
 
 export const callAiMessages = async(messages : message[])=> {
-  console.log("callAi message called");
-  console.log(messages)
+  
+  
 
         try {
             const res = await fetch("https://react-qwen.vercel.app/api/v1/chat",

@@ -34,8 +34,7 @@ const GetStartedOptionsButton = () => {
       const {error} = await sginOut();
       dispatch(logout());
       router.push('redirectpage');
-      if(error)
-        console.log("error",error); 
+ 
     }
 
     useEffect(()=>{

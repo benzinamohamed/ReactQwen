@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CommandLineIcon, HomeIcon } from '@heroicons/react/24/outline';
+import { HomeIcon } from '@heroicons/react/24/outline';
 
 export default function NotFound() {
   return (

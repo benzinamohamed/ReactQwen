@@ -26,8 +26,8 @@ if (userData.id){
     setLoading(true);
     const { data, error } = await insertConversation(userData.id, prompt);
     const id = data && data[0]?.id;
-    console.log("data", id);
-    console.log("err", error);
+    
+    
     router.push(`/code-execution/chat/${id}`);
   } catch (err) {
     console.error("An error occurred:", err);

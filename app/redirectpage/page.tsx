@@ -15,14 +15,14 @@ const  router = useRouter();
 
 const fetchUser = async() => {
   const { data, error } = await getCurrentUser();
-  console.log("data",data);
-  console.log("error",error);
+  
+  
   if(error){
-    console.log("error",error); 
+     
     router.push("/")
   }
   if(data.session){
-    console.log("data",data);
+    
     const id = data.session.user.id;
     const {email , name , avatar_url} =data.session.user.user_metadata ;
     dispatch(login({id: id , email , name , picture: avatar_url}));

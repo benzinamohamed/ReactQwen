@@ -4,7 +4,7 @@ type Provider = "google" | "github";
 
  const supabase = createClientComponentClient( process.env.NEXT_PUBLIC_SUPABASE_URL , process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY , process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY);
 
-console.log(process.env.SUPABASE_URL);
+
 export const signWithProvider = async( providerName : Provider  ) =>
     {
     return  await supabase.auth.signInWithOAuth({

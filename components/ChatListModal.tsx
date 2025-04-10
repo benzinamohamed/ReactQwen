@@ -20,7 +20,7 @@ const ChatListModal = ({isVisible} :ChatList ) => {
     const retrieveConvos = async ()=>{
           const {data ,error} = await getConversations(userData.id);
        setConversations(data);
-       console.log("sss",conversations);
+       
     }
 
     const handlePressConvo =(itemId : string)=> {

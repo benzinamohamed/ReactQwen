@@ -13,10 +13,10 @@ export async function middleware(req: NextRequest) {
 
   const {data :{user }} = await supabase.auth.getUser();
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => req.nextUrl.pathname.startsWith(route));  
-  console.log(req.nextUrl.pathname)
-  //console.log(req.q)
+  
+  //
   if(isProtectedRoute && !user) {
-    console.log("User is not logged in, redirecting to home page");
+    
     return NextResponse.redirect(new URL('/', req.nextUrl.origin)); 
   }
   if(isProtectedRoute && user){

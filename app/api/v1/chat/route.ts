@@ -39,7 +39,7 @@ export async function getGroqChatCompletion(chat :conversation[]) {
         };
       } );
       const chatCompletion = await getGroqChatCompletion(messages);
-     // console.log(parsedData);
+     // 
       return Response.json({
         role: "assistant",
         content: chatCompletion.choices[0]?.message?.content || ""

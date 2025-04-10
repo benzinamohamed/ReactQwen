@@ -26,16 +26,20 @@ export type message = {
       const conversationId = urls? urls[urls.length -1] : "";
         const handleGenerate = async()=>{
           if(prompt){
-            
-            setPrompt("");
-            await insertMessage("user" ,prompt ,conversationId );
-            setmessages((prev) => [...prev, { sender: "user", content: prompt }]);
-            setAiLoading(true);
-            const message =  await callAiMessages([...messages , { sender: "user", content: prompt }]);
-            dispatch(setCode({code : message.content ? message.content : "server busy please try again later"}));
-            await insertMessage("assistant" , message.content ? message.content : "server busy please try again later" , conversationId)
-            setmessages((prev) => [...prev, { sender: "assistant", content: message.content ? message.content : "server busy please try again later"}])
-          setAiLoading(false);
+            try {
+              setPrompt("");
+              await insertMessage("user", prompt, conversationId);
+              setmessages((prev) => [...prev, { sender: "user", content: prompt }]);
+              setAiLoading(true);
+              const message = await callAiMessages([...messages, { sender: "user", content: prompt }]);
+              dispatch(setCode({ code: message.content ? message.content : "server busy please try again later" }));
+              await insertMessage("assistant", message.content ? message.content : "server busy please try again later", conversationId);
+              setmessages((prev) => [...prev, { sender: "assistant", content: message.content ? message.content : "server busy please try again later" }]);
+            } catch (error) {
+
+            } finally {
+              setAiLoading(false);
+            }
           }}
           const retreiveMessages = async()=>{
             try {
@@ -51,13 +55,13 @@ export type message = {
                handleAireplyFromHomeScreen(filtredData[filtredData.length -1].content);
                setAiLoading(false);
                shouldreply = true;
-               console.log(shouldreply);
+               
              }
              if(filtredData.length > 0 && filtredData[filtredData.length -1 ].sender ==="assistant"){
               dispatch(setCode({code : filtredData[filtredData.length -1].content}));
              }
 
-              console.log(messages);
+              
             } catch (err) {
               console.error("An unexpected error occurred:", err);
             }
@@ -73,7 +77,7 @@ export type message = {
             
           const handleAireplyFromHomeScreen = async(prompt : string)=>{
             const message =  await callAiprompt(prompt);
-          console.log(message);
+          
           dispatch(setCode({code : message.content}));
           await insertMessage("assistant" , message.content , conversationId)
           setmessages((prev) => [...prev, { sender: "assistant", content: message.content}])
