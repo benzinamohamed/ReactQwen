@@ -22,7 +22,7 @@ export async function getGroqChatCompletion(chat :conversation[]) {
   chat.unshift(System);
   return groq.chat.completions.create({
     messages: chat,
-    model: "deepseek-r1-distill-llama-70b",
+    model: "qwen-qwq-32b",
   });
 }
 
