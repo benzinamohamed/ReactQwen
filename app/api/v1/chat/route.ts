@@ -22,7 +22,7 @@ export async function getGroqChatCompletion(chat :conversation[]) {
   chat.unshift(System);
   return groq.chat.completions.create({
     messages: chat,
-    model: "meta-llama/llama-4-scout-17b-16e-instruct",
+    model: "Llama 4 Maverick 17B 128E",
   });
 }
 
